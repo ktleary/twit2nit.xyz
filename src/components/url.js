@@ -1,6 +1,10 @@
 import React from "react";
 
-const Url = ({ twitterUrl, setTwitterUrl }) => (
+const inputStyle = {
+  width: "67%",
+};
+
+const Url = ({ twitterUrl, setTwitterUrl, validUrl }) => (
   <section>
     <h2>Nitter by Twitter URL</h2>
     <p>
@@ -11,14 +15,19 @@ const Url = ({ twitterUrl, setTwitterUrl }) => (
     <p>
       <input
         type="text"
-        name="name"
-        id="name"
-        placeholder="URL"
+        name="urlName"
+        id="urlName"
+        style={inputStyle}
+        placeholder="Full URL"
         value={twitterUrl}
         onChange={e => setTwitterUrl(e.target.value)}
       />
-      <button id="urlShowList">LIST</button>
-      <button id="urlGoRandom">RANDOM</button>
+      <button id="urlShowList" disabled={!validUrl}>
+        LIST
+      </button>
+      <button id="urlGoRandom" disabled={!validUrl}>
+        RANDOM
+      </button>
     </p>
   </section>
 );

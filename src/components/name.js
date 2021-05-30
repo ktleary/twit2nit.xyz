@@ -1,5 +1,9 @@
 import React from "react";
 
+const inputStyle = {
+  width: "67%",
+};
+
 const Name = ({ setTwitterName }) => (
   <section>
     <h2>Nitter by Twitter Name</h2>
@@ -12,6 +16,7 @@ const Name = ({ setTwitterName }) => (
         type="text"
         name="name"
         id="name"
+        style={inputStyle}
         placeholder="Twitter Name"
         onChange={e => setTwitterName(e.target.value)}
       />

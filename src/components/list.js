@@ -1,8 +1,6 @@
-import React from 'react';
+import React from "react";
 
-
-const List = () => {
-
-}
+const List = ({ instanceLinks }) =>
+  instanceLinks.map(link => <div>{link}</div>);
 
 export default List;
