@@ -11,6 +11,14 @@ const buildUrls = (instances, name) =>
     []
   );
 
+const randomListItem = list => Math.floor(Math.random() * list.length);
+const getRandomListItem = list => list[randomListItem(list)];
+
+const feelingLucky = instanceLinks => {
+  const selectedInstanceLink = getRandomListItem(instanceLinks);
+  document.location.href = selectedInstanceLink;
+};
+
 const Name = ({ instances }) => {
   const [name, setName] = useState("");
   const [instanceLinks, setInstanceLinks] = useState([]);
@@ -46,7 +54,11 @@ const Name = ({ instances }) => {
         >
           LIST
         </button>
-        <button id="nameGoRandom" disabled={disabled}>
+        <button
+          id="nameGoRandom"
+          disabled={disabled}
+          onClick={() => feelingLucky(instanceLinks)}
+        >
           RANDOM
         </button>
         <button id="nameClear" disabled={disabled} onClick={() => setName("")}>
