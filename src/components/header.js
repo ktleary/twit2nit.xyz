@@ -1,8 +1,15 @@
 import React from "react";
 
+const linkStyle = {
+  color: "rgba(255, 255, 255, 0.33)",
+  textDecoration: "none"
+};
+
 const Header = () => (
   <h1>
-    <a href="/">Twit2Nit</a>
+    <a href="/" style={linkStyle}>
+      Twit2Nit
+    </a>
   </h1>
 );
 

@@ -1,22 +1,9 @@
 import React, { useEffect, useState } from "react";
 import List from "./list";
+import { buildUrls, feelingLucky } from "../util";
 
 const inputStyle = {
   width: "67%",
-};
-
-const buildUrls = (instances, name) =>
-  instances.reduce(
-    (agg, instance) => [...agg, instance.concat("/").concat(name)],
-    []
-  );
-
-const randomListItem = list => Math.floor(Math.random() * list.length);
-const getRandomListItem = list => list[randomListItem(list)];
-
-const feelingLucky = instanceLinks => {
-  const selectedInstanceLink = getRandomListItem(instanceLinks);
-  document.location.href = selectedInstanceLink;
 };
 
 const Name = ({ instances }) => {
@@ -34,8 +21,9 @@ const Name = ({ instances }) => {
     <section>
       <h2>Nitter by Twitter Name</h2>
       <p>
-        Enter a Twitter username press "GO" to be redirected to a nitter
-        instance serving that profile.
+        Enter a Twitter username press "LIST" to view links to available
+        instances or "RANDOM" to be redirected to a nitter instance serving that
+        profile.
       </p>
       <p>
         <input
