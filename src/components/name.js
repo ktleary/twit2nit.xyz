@@ -21,11 +21,6 @@ const Name = ({ instances }) => {
     <section>
       <h2>Nitter by Twitter Name</h2>
       <p>
-        Enter a Twitter username press "LIST" to view links to available
-        instances or "GO RANDOM" to be redirected to a nitter instance serving that
-        profile.
-      </p>
-      <p>
         <input
           type="text"
           name="name"

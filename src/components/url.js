@@ -40,11 +40,6 @@ const Url = ({ instances }) => {
     <section>
       <h2>Nitter by Twitter URL</h2>
       <p>
-        Enter a Twitter URL and press "LIST" to view an available instance list
-        pre-populated with your name or "RANDOM" to be automatically redirected
-        to a random instance serving that profile.
-      </p>
-      <p>
         <input
           type="text"
           name="urlName"
