@@ -7,6 +7,8 @@ const testInstances = [
   "https://nitter.cc",
 ];
 
-const testing = true;
+const endpoint="/api/goodInstances";
 
-export { testing, testInstances };
+const testing = false;
+
+export { endpoint, testing, testInstances };

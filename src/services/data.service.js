@@ -1,13 +1,15 @@
-import { testing, testInstances } from "../config";
+import { endpoint, testing, testInstances } from "../config";
 
-const getInstanceData = () => {
+const getInstanceData = async () => {
   if (testing) {
     return new Promise((resolve, reject) => {
       resolve(testInstances);
     });
-  } else {
-    return ["nitter.net"];
   }
+
+  const response = await fetch(endpoint);
+  const instances = await response.json();
+  return instances;
 };
 
 export { getInstanceData };

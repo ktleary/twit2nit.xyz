@@ -15,13 +15,15 @@ const App = () => {
     async function retrieveInstances() {
       setMessage(MESSAGES.FETCHINGDATA);
       const instances = await getInstanceData();
-      setInstances(instances);
-      setMessage("");
+      if (instances.length) {
+        setInstances(instances);
+        setMessage("");
+      } else {
+        setMessage(MESSAGES.NOINSTANCESFOUND);
+      }
     }
     retrieveInstances();
   }, []);
-
-
 
   return (
     <div>

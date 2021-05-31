@@ -66,7 +66,7 @@ const Url = ({ instances }) => {
           disabled={disabledShowGo}
           onClick={() => feelingLucky(instanceLinks)}
         >
-          RANDOM
+          GO RANDOM!
         </button>
         <button
           id="urlClear"

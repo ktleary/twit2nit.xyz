@@ -22,7 +22,7 @@ const Name = ({ instances }) => {
       <h2>Nitter by Twitter Name</h2>
       <p>
         Enter a Twitter username press "LIST" to view links to available
-        instances or "RANDOM" to be redirected to a nitter instance serving that
+        instances or "GO RANDOM" to be redirected to a nitter instance serving that
         profile.
       </p>
       <p>
@@ -47,7 +47,7 @@ const Name = ({ instances }) => {
           disabled={disabled}
           onClick={() => feelingLucky(instanceLinks)}
         >
-          RANDOM
+          GO RANDOM!
         </button>
         <button id="nameClear" disabled={disabled} onClick={() => setName("")}>
           CLEAR

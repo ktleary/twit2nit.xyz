@@ -1,14 +1,14 @@
 import React from "react";
 
 const linkStyle = {
-  color: "rgba(255, 255, 255, 0.33)",
+  color: "rgba(255, 255, 255, 0.87)",
   textDecoration: "none"
 };
 
 const Header = () => (
   <h1>
     <a href="/" style={linkStyle}>
-      Twit2Nit
+      twit2nit
     </a>
   </h1>
 );
