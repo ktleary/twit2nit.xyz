@@ -14,7 +14,7 @@ Twit2Nit UI works by fetching a list of good instances from a server and prenset
 
 ## In the wild
 
-- visit [twit2nit.xxy](twit2nit.xyz) to try the app
+- visit [twit2nit.xyz](twit2nit.xyz) to try the app
 
 ## Development
 
