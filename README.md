@@ -1,6 +1,6 @@
-# Twit2Nit UI
+# Twit2Nit
 
-Twit2Nit polls nitter instances for availablity and allows users to choose or randomly be redirected to a healthy site.
+Twit2Nit polls [Nitter](https://github.com/zedeus/nitter/wiki/Instances) instances for availability and allows users to choose or randomly be redirected to a healthy site.
 
 Users may submit:
 
@@ -10,7 +10,7 @@ Users may submit:
 
 Servers are polled every 15 minutes, but due to rate limiting and many instances being self-hosted, sometimes an instance receiving a redirect may be temporarily unavailable.
 
-Twit2Nit UI works by fetching a list of good instances from a server and prenseting users with viewing options.
+Twit2Nit UI works by fetching a list of good instances from a server and presenting users with viewing options.
 
 ## In the wild
 
@@ -27,7 +27,7 @@ Twit2Nit UI is built in React JS.
 
 ## Privacy and License
 
-Twit2Nit is a free and open source, privacy-respecting GPL-v3 licensed tool which does not use cookies or tracking.
+Twit2Nit is a free and open source, privacy-respecting GPL-v3 licensed tool and does not use cookies or tracking.
 
 ## Contributing
 
