@@ -12,6 +12,10 @@ Servers are polled every 15 minutes, but due to rate limiting and many instances
 
 Twit2Nit UI works by fetching a list of good instances from a server and prenseting users with viewing options.
 
+## In the wild
+
+- visit [twit2nit.xxy](twit2nit.xyz) to try the app
+
 ## Development
 
 Twit2Nit UI is built in React JS.
