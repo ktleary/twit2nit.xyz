@@ -1,5 +1,7 @@
 # Twit2Nit
 
+[![builds.sr.ht status](https://builds.sr.ht/~djlooop/twit2nit-client.svg)](https://builds.sr.ht/~djlooop/twit2nit-client?)
+
 Twit2Nit polls [Nitter](https://github.com/zedeus/nitter/wiki/Instances) instances for availability and allows users to choose or randomly be redirected to a healthy site.
 
 Users may submit:

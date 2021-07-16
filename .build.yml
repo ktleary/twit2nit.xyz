@@ -1,0 +1,15 @@
+image: archlinux
+packages:
+  - nodejs
+  - npm
+sources:
+  - https://git.sr.ht/~djlooop/twit2nit-client
+tasks:
+  - setup: |
+      cd twit2nit-client
+      npm install
+  - test: |
+      cd twit2nit-client
+      npm test
+
+
