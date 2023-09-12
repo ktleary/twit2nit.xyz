@@ -43,4 +43,6 @@ Twit2Nit is inspired by [TWIIIT.com](twiiit.com) from
 
 ## Similar Projects
 
-- [invidi.link](https://invidi.link) creates Invidious links and can also be found on [sourcehut](https://sr.ht/~djlooop/invidi.link)
+- [invidi.link](https://invidi.link) creates Invidious links for healthy instances and can also be found on [sourcehut](https://sr.ht/~djlooop/invidi.link)
+- [red4u.xyz](https://red4u.xyz) creates teddit and libreddit urls for healthy instances and can also be found on [sourcehut](https://sr.ht/~djlooop/red4u.xyz/)
+- [random searx](https://stringtalk.org/searx) creates random searx links for healthy instances and can also be found on [sourcehut](https://sr.ht/~djlooop/random-searx/

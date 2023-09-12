@@ -22,8 +22,18 @@ const Footer = () => (
         </li>
         <li>
           <a href="https://invidi.link">invidi.link</a> creates Invidious links
-          and code can also be found on{" "}
+          for healthy instances and code can also be found on{" "}
           <a href="https://sr.ht/~djlooop/invidi.link/">sourcehut</a>
+        </li>
+        <li>
+          <a href="https://red4u.xyz">red4u.xyz</a> creates teddit and libreddit
+          links for healthy instances and code can also be found on{" "}
+          <a href="https://sr.ht/~djlooop/red4u.xyz/)">sourcehut</a>
+        </li>
+        <li>
+          <a href="https://stringtalk.org/searx">searx</a> creates Searx links
+          for healthy instances and code can also be found on{" "}
+          <a href="https://sr.ht/~djlooop/random-searx/">sourcehut</a>
         </li>
       </ul>
     </p>
