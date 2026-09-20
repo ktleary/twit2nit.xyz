@@ -156,6 +156,7 @@
 
 // ---- twit2nit ----
 const $ = (id) => document.getElementById(id);
+const D420_URL = 'https://status.d420.de/api/v1/instances';
 const LIST_URL = 'https://raw.githubusercontent.com/wiki/zedeus/nitter/Instances.md';
 const CACHE_KEY = 't2n-instances-v1';
 const PROBE_TIMEOUT = 4000;
@@ -194,19 +195,41 @@ function parseInstancesWiki(md) {
   return out;
 }
 
+async function fetchD420() {
+  // region-dependent and aggressively rate-limited (429s from some vantage points) —
+  // treat as best-effort primary, never as the only source
+  const res = await fetch(D420_URL, { signal: AbortSignal.timeout(6000) });
+  if (!res.ok) throw new Error(`status api returned ${res.status}`);
+  const data = await res.json();
+  return (data.hosts || [])
+    .filter((h) => h.url && /^https:\/\//.test(h.url) && h.healthy !== false)
+    .map((h) => ({ uri: h.url.replace(/\/+$/, ''), d420: true }));
+}
+
 async function loadInstances(force = false) {
   const cached = force ? null : sessionStorage.getItem(CACHE_KEY);
   if (cached) {
     const o = JSON.parse(cached);
-    return { list: o.list, age: Math.round((Date.now() - o.at) / 60000) };
+    return { list: o.list, source: o.source, age: Math.round((Date.now() - o.at) / 60000) };
   }
-  const res = await fetch(LIST_URL, { signal: AbortSignal.timeout(8000) });
-  if (!res.ok) throw new Error(`instance list returned ${res.status}`);
-  const list = parseInstancesWiki(await res.text());
-  if (!list.length) throw new Error('no online instances listed in the nitter wiki right now');
-  const payload = { list, at: Date.now() };
+  let list = [], source = '';
+  try {
+    list = await fetchD420();
+    source = 'status.d420.de';
+  } catch { /* fall through to the wiki */ }
+  if (!list.length) {
+    const res = await fetch(LIST_URL, { signal: AbortSignal.timeout(8000) });
+    if (!res.ok) throw new Error(`instance list returned ${res.status}`);
+    list = parseInstancesWiki(await res.text());
+    source = 'nitter wiki';
+  }
+  if (!list.length) throw new Error('no online instances found from either source');
+  // dedupe by host (wiki + d420 may overlap)
+  const seen = new Set();
+  list = list.filter((i) => !seen.has(i.uri) && seen.add(i.uri));
+  const payload = { list, source, at: Date.now() };
   sessionStorage.setItem(CACHE_KEY, JSON.stringify(payload));
-  return { list, age: 0 };
+  return { list, source, age: 0 };
 }
 
 // reachability probe: no-cors fetch resolves on network success, rejects on failure/timeout
@@ -217,7 +240,7 @@ async function probe(uri) {
   } catch { return false; }
 }
 
-let state = { list: [], age: 0, path: null, urls: [] };
+let state = { list: [], age: 0, source: '', path: null, urls: [] };
 
 function render() {
   const results = $('results');
@@ -225,7 +248,7 @@ function render() {
   const sorted = [...state.list].sort((a, b) => (b.reachable === true) - (a.reachable === true));
   state.urls = sorted.map((i) => i.uri + state.path);
   $('count').textContent = `${state.urls.length} instances available`;
-  $('updated').textContent = state.age ? `list cached ${state.age}m ago` : 'list fresh';
+  $('updated').textContent = `${state.source} · ${state.age ? `cached ${state.age}m ago` : 'fresh'}`;
   results.innerHTML = sorted.map((i) => {
     const host = new URL(i.uri).hostname;
     const reach = i.reachable === true ? '<span class="up">reachable</span>'
@@ -249,8 +272,8 @@ async function convert() {
   state.path = parsed.path;
   try {
     setStatus('Loading instance list…');
-    const { list, age } = await loadInstances();
-    state.list = list; state.age = age;
+    const { list, age, source } = await loadInstances();
+    state.list = list; state.age = age; state.source = source;
     setStatus('Ready — pick an instance below, or go random.');
     render();
     Promise.all(list.map(async (i) => {
